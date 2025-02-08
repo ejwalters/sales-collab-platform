@@ -60,13 +60,18 @@ const Login = () => {
         // If login is successful, navigate to the desired page
         if (data.user) {
           console.log('Login successful, navigating...');
-          navigate('/dark-sidebar', { replace: true });
+          navigate('/', { replace: true });
         }
       } catch (error) {
-        console.error('Login error:', error.message); // ✅ Log error details
-        console.error('Error logging in:', error.message);
-        setStatus(error.message || 'Login failed');
-        setSubmitting(false);
+        if (error instanceof Error) {
+          console.error('Error:', error.message);
+          setStatus(error.message || 'An unexpected error occurred');
+        } else {
+          console.error('Unexpected error:', error);
+          setStatus('An unexpected error occurred');
+          setSubmitting(false);
+        }
+        
       }
       setLoading(false);
     }    
