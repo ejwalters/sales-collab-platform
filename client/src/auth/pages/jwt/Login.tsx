@@ -8,6 +8,8 @@ import { toAbsoluteUrl } from '@/utils';
 import { useAuthContext } from '@/auth';
 import { useLayout } from '@/providers';
 import { Alert } from '@/components';
+import { supabase } from '@/supabaseClient';
+
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -33,7 +35,7 @@ const Login = () => {
   const { login } = useAuthContext();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || '/dashboard';
   const [showPassword, setShowPassword] = useState(false);
   const { currentLayout } = useLayout();
 
@@ -42,27 +44,32 @@ const Login = () => {
     validationSchema: loginSchema,
     onSubmit: async (values, { setStatus, setSubmitting }) => {
       setLoading(true);
-
+    
       try {
-        if (!login) {
-          throw new Error('JWTProvider is required for this form.');
+        const { error, data } = await supabase.auth.signInWithPassword({
+          email: values.email,
+          password: values.password,
+        });
+
+        console.log('Login data:', data); // ✅ Log the login response
+    
+        if (error) {
+          throw new Error(error.message);
         }
-
-        await login(values.email, values.password);
-
-        if (values.remember) {
-          localStorage.setItem('email', values.email);
-        } else {
-          localStorage.removeItem('email');
+    
+        // If login is successful, navigate to the desired page
+        if (data.user) {
+          console.log('Login successful, navigating...');
+          navigate('/dark-sidebar', { replace: true });
         }
-
-        navigate(from, { replace: true });
-      } catch {
-        setStatus('The login details are incorrect');
+      } catch (error) {
+        console.error('Login error:', error.message); // ✅ Log error details
+        console.error('Error logging in:', error.message);
+        setStatus(error.message || 'Login failed');
         setSubmitting(false);
       }
       setLoading(false);
-    }
+    }    
   });
 
   const togglePassword = (event: MouseEvent<HTMLButtonElement>) => {

@@ -5,14 +5,14 @@ import { ScreenLoader } from '@/components/loaders';
 import { useAuthContext } from './useAuthContext';
 
 const RequireAuth = () => {
-  const { auth, loading } = useAuthContext();
+  const { currentUser, loading } = useAuthContext();
   const location = useLocation();
 
   if (loading) {
     return <ScreenLoader />;
   }
 
-  return auth ? <Outlet /> : <Navigate to="/auth/login" state={{ from: location }} replace />;
+  return currentUser ? <Outlet /> : <Navigate to="/auth/login" state={{ from: location }} replace />;
 };
 
 export { RequireAuth };

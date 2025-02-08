@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './auth/providers/JWTProvider';
 import { useSettings } from '@/providers/SettingsProvider';
 import { AppRouting } from '@/routing';
 import { PathnameProvider } from '@/providers';
@@ -17,18 +18,20 @@ const App = () => {
   }, [settings]);
 
   return (
-    <BrowserRouter
-      basename={BASE_URL}
-      future={{
-        v7_relativeSplatPath: true,
-        v7_startTransition: true
-      }}
-    >
-      <PathnameProvider>
-        <AppRouting />
-      </PathnameProvider>
-      <Toaster />
-    </BrowserRouter>
+    <AuthProvider>  {/* ✅ Wrap the entire app inside AuthProvider */}
+      <BrowserRouter
+        basename={BASE_URL}
+        future={{
+          v7_relativeSplatPath: true,
+          v7_startTransition: true
+        }}
+      >
+        <PathnameProvider>
+          <AppRouting />
+        </PathnameProvider>
+        <Toaster />
+      </BrowserRouter>
+    </AuthProvider>
   );
 };
 
