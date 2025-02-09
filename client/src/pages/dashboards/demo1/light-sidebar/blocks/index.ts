@@ -5,4 +5,6 @@ export * from './Highlights';
 export * from './TeamMeeting';
 export * from './OpenDeals';
 export * from './TotalPipelineValue';
+export * from './RecentAssetView';
+export * from './DealsByStage';
 export * from './teams';

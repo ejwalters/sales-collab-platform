@@ -7,6 +7,8 @@ import {
   OpenDeals,
   Teams,
   TotalPipelineValue,
+  DealsByStage,
+  RecentAssetView,
 } from './blocks';
 
 const Demo1LightSidebarContent = () => {
@@ -22,15 +24,14 @@ const Demo1LightSidebarContent = () => {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
-        <div className="lg:col-span-1">
-          <Highlights limit={3} />
-        </div>
-
-        <div className="lg:col-span-2">
-          <EarningsChart />
-        </div>
-      </div>
+      <div className="grid lg:grid-cols-3 gap-5 lg:gap-5.5 items-stretch">
+  <div className="lg:col-span-1 h-full">
+    <DealsByStage title="Deals by Stage" />
+  </div>
+  <div className="lg:col-span-2 h-full">
+    <RecentAssetView />
+  </div>
+</div>
 
       <div className="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
         <div className="lg:col-span-1">
