@@ -9,6 +9,7 @@ import {
   TotalPipelineValue,
   DealsByStage,
   RecentAssetView,
+  RecentMessages,
 } from './blocks';
 
 const Demo1LightSidebarContent = () => {
@@ -34,12 +35,8 @@ const Demo1LightSidebarContent = () => {
 </div>
 
       <div className="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
-        <div className="lg:col-span-1">
-          <TeamMeeting />
-        </div>
-
-        <div className="lg:col-span-2">
-          <Teams />
+        <div className="lg:col-span-3">
+          <RecentMessages />
         </div>
       </div>
     </div>
