@@ -8,4 +8,7 @@ export * from './TotalPipelineValue';
 export * from './RecentAssetView';
 export * from './DealsByStage';
 export * from './RecentMessages';
+export * from './AccountEngagementSummary';
+export * from './UserActivityInsights';
+export * from './CombinedDealsComponent';
 export * from './teams';

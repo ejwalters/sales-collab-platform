@@ -489,33 +489,6 @@ export const MENU_SIDEBAR: TMenuConfig = [
         path: '/error/500'
       }
     ]
-  },
-  { heading: 'Apps' },
-  {
-    title: 'User Management',
-    icon: 'users',
-    disabled: true
-  },
-  {
-    title: 'Projects',
-    icon: 'questionnaire-tablet',
-    disabled: true
-  },
-  {
-    title: 'eCommerce',
-    icon: 'handcart',
-    disabled: true
-  },
-  { heading: 'Miscellaneous' },
-  {
-    title: 'Modals',
-    icon: 'some-files',
-    disabled: true
-  },
-  {
-    title: 'Wizards',
-    icon: 'note-2',
-    disabled: true
   }
 ];
 

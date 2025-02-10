@@ -82,13 +82,16 @@ import {
   AuthenticationAccountDeactivatedPage,
   AuthenticationGetStartedPage
 } from '@/pages/authentication';
-
+import { DealsPage } from '@/pages/DealsPage';
+import { DealOverviewPage } from '@/pages/DealOverviewPage';
 const AppRoutingSetup = (): ReactElement => {
   return (
     <Routes>
       <Route element={<RequireAuth />}>
         <Route element={<Demo1Layout />}>
           <Route path="/" element={<DefaultPage />} />
+          <Route path="/deals" element={<DealsPage />} />
+          <Route path="/deals/:dealId" element={<DealOverviewPage />} />
           <Route path="/dark-sidebar" element={<Demo1DarkSidebarPage />} />
           <Route path="/public-profile/profiles/default" element={<ProfileDefaultPage />} />
           <Route path="/public-profile/profiles/creator" element={<ProfileCreatorPage />} />

@@ -75,11 +75,11 @@ const RecentAssetView = () => {
         <table className="table-auto w-full border-collapse">
           <thead>
             <tr className="text-left bg-gray-100 text-sm text-gray-800">
-              <th className="py-2 px-4">Asset Name</th>
-              <th className="py-2 px-4">Prospect</th>
-              <th className="py-2 px-4">Viewer</th>
-              <th className="py-2 px-4">Viewed On</th>
-              <th className="py-2 px-4">Total Views</th>
+              <th className="py-2 px-4 text-gray-600 text-xs font-semibold uppercase">Asset Name</th>
+              <th className="py-2 px-4 text-gray-600 text-xs font-semibold uppercase">Prospect</th>
+              <th className="py-2 px-4 text-gray-600 text-xs font-semibold uppercase">Viewer</th>
+              <th className="py-2 px-4 text-gray-600 text-xs font-semibold uppercase">Viewed On</th>
+              <th className="py-2 px-4 text-gray-600 text-xs font-semibold uppercase">Total Views</th>
             </tr>
           </thead>
           <tbody>
