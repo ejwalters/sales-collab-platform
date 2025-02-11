@@ -119,13 +119,16 @@ const ToDoList = () => {
         <div className="flex flex-col gap-2 lg:gap-4">
           {todos.map((todo) => (
             <div key={todo.id} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded">
-              <div className="flex-shrink-0">
-                <input
-                  type="checkbox"
-                  checked={todo.completed}
-                  onChange={() => toggleTodo(todo.id)}
-                  className="checkbox"
-                />
+              <div 
+                onClick={() => toggleTodo(todo.id)}
+                className={`flex-shrink-0 w-6 h-6 rounded-full cursor-pointer flex items-center justify-center border
+                  ${todo.completed 
+                    ? 'bg-primary border-primary' 
+                    : 'bg-white border-gray-300 hover:border-primary'}`}
+              >
+                {todo.completed && (
+                  <KeenIcon icon="check" className="text-white size-4" />
+                )}
               </div>
               
               <div className="flex items-center justify-between grow gap-2">
