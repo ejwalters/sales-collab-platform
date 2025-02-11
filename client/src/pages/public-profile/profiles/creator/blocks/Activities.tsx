@@ -13,8 +13,32 @@ import {
 } from '@/partials/activities/items';
 
 const Activities = () => {
+  const activities = [
+    <ActivitiesNewArticle key="new-article" />,
+    <ActivitiesInterview key="interview" />,
+    <ActivitiesUpcomingContent key="upcoming" />,
+    <ActivitiesBloggingConference
+      key="conference"
+      image={
+        <Fragment>
+          <img
+            src={toAbsoluteUrl(`/media/illustrations/3.svg`)}
+            className="dark:hidden max-h-[160px]"
+            alt=""
+          />
+          <img
+            src={toAbsoluteUrl(`/media/illustrations/3-dark.svg`)}
+            className="light:hidden max-h-[160px]"
+            alt=""
+          />
+        </Fragment>
+      }
+    />,
+    <ActivitiesFollowersMilestone key="followers" />
+  ];
+
   return (
-    <div className="card">
+    <div className="card h-full flex flex-col">
       <div className="card-header">
         <h3 className="card-title">Activities</h3>
 
@@ -31,35 +55,10 @@ const Activities = () => {
       </div>
 
       <div className="card-body">
-        <ActivitiesNewArticle />
-
-        <ActivitiesInterview />
-
-        <ActivitiesUpcomingContent />
-
-        <ActivitiesBloggingConference
-          image={
-            <Fragment>
-              <img
-                src={toAbsoluteUrl(`/media/illustrations/3.svg`)}
-                className="dark:hidden max-h-[160px]"
-                alt=""
-              />
-              <img
-                src={toAbsoluteUrl(`/media/illustrations/3-dark.svg`)}
-                className="light:hidden max-h-[160px]"
-                alt=""
-              />
-            </Fragment>
-          }
-        />
-
-        <ActivitiesFollowersMilestone />
-
-        <ActivitiesAnniversary />
+        {activities.slice(0, 3)}
       </div>
 
-      <div className="card-footer justify-center">
+      <div className="card-footer justify-center mt-auto">
         <Link to="/public-profile/activity" className="btn btn-link">
           All-time Activities
         </Link>

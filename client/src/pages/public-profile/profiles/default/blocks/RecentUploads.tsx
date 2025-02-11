@@ -9,6 +9,11 @@ interface IRecentUploadsItem {
   image: string;
   desc: string;
   date: string;
+  lastViewed: string;
+  viewedBy: {
+    name: string;
+    avatar: string;
+  };
 }
 interface IRecentUploadsItems extends Array<IRecentUploadsItem> {}
 
@@ -23,64 +28,44 @@ const RecentUploads = ({ title }: IRecentUploadsProps) => {
     {
       image: 'pdf.svg',
       desc: 'Project-pitch.pdf',
-      date: '4.7 MB 26 Sep 2024 3:20 PM'
+      date: '26 Sep 2024',
+      lastViewed: '2 hours ago',
+      viewedBy: {
+        name: 'Emma Smith',
+        avatar: '/media/avatars/300-6.png'
+      }
     },
     {
       image: 'doc.svg',
       desc: 'Report-v1.docx',
-      date: '2.3 MB 1 Oct 2024 12:00 PM'
+      date: '1 Oct 2024',
+      lastViewed: 'Yesterday',
+      viewedBy: {
+        name: 'Max Harris',
+        avatar: '/media/avatars/300-5.png'
+      }
     },
     {
       image: 'ai.svg',
       desc: 'Framework-App.js',
-      date: '0.8 MB 17 Oct 2024 6:46 PM'
+      date: '17 Oct 2024',
+      lastViewed: '3 days ago',
+      viewedBy: {
+        name: 'Sean Bean',
+        avatar: '/media/avatars/300-1.png'
+      }
     },
     {
       image: 'js.svg',
       desc: 'Mobile-logo.ai',
-      date: '0.2 MB 4 Nov 2024 11:30 AM'
+      date: '4 Nov 2024',
+      lastViewed: '1 week ago',
+      viewedBy: {
+        name: 'Brian Cox',
+        avatar: '/media/avatars/300-2.png'
+      }
     }
   ];
-
-  const renderItem = (item: IRecentUploadsItem, index: number) => {
-    return (
-      <div key={index} className="flex items-center gap-3">
-        <div className="flex items-center grow gap-2.5">
-          <img src={toAbsoluteUrl(`/media/file-types/${item.image}`)} alt="" />
-
-          <div className="flex flex-col">
-            <span className="text-sm font-medium text-gray-900 cursor-pointer hover:text-primary mb-px">
-              {item.desc}
-            </span>
-            <span className="text-xs text-gray-700">{item.date}</span>
-          </div>
-        </div>
-
-        <Menu>
-          <MenuItem
-            toggle="dropdown"
-            trigger="click"
-            dropdownProps={{
-              placement: isRTL() ? 'bottom-start' : 'bottom-end',
-              modifiers: [
-                {
-                  name: 'offset',
-                  options: {
-                    offset: isRTL() ? [0, -10] : [0, 10] // [skid, distance]
-                  }
-                }
-              ]
-            }}
-          >
-            <MenuToggle className="btn btn-sm btn-icon btn-light btn-clear">
-              <KeenIcon icon="dots-vertical" />
-            </MenuToggle>
-            {DropdownCardItem1()}
-          </MenuItem>
-        </Menu>
-      </div>
-    );
-  };
 
   return (
     <div className="card">
@@ -97,7 +82,7 @@ const RecentUploads = ({ title }: IRecentUploadsProps) => {
                 {
                   name: 'offset',
                   options: {
-                    offset: isRTL() ? [0, -10] : [0, 10] // [skid, distance]
+                    offset: isRTL() ? [0, -10] : [0, 10]
                   }
                 }
               ]
@@ -111,12 +96,72 @@ const RecentUploads = ({ title }: IRecentUploadsProps) => {
         </Menu>
       </div>
 
-      <div className="card-body">
-        <div className="grid gap-2.5 lg:gap-5">
-          {items.map((item, index) => {
-            return renderItem(item, index);
-          })}
-        </div>
+      <div className="card-body p-5">
+        <table className="table-auto w-full border-collapse">
+          <thead>
+            <tr className="text-left bg-gray-100 text-sm text-gray-800">
+              <th className="py-2 px-4 text-gray-600 text-xs font-semibold uppercase">File Name</th>
+              <th className="py-2 px-4 text-gray-600 text-xs font-semibold uppercase">Date</th>
+              <th className="py-2 px-4 text-gray-600 text-xs font-semibold uppercase">Last Viewed</th>
+              <th className="py-2 px-4 text-gray-600 text-xs font-semibold uppercase">Viewed By</th>
+              <th className="py-2 px-4 text-gray-600 text-xs font-semibold uppercase"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item, index) => (
+              <tr key={index} className="text-sm text-gray-700 border-b">
+                <td className="py-2 px-4">
+                  <div className="flex items-center gap-2.5">
+                    <img src={toAbsoluteUrl(`/media/file-types/${item.image}`)} alt="" className="w-8 h-8" />
+                    <span className="text-sm font-medium text-gray-900 cursor-pointer hover:text-primary">
+                      {item.desc}
+                    </span>
+                  </div>
+                </td>
+                <td className="py-2 px-4">
+                  <span className="text-xs text-gray-700">{item.date}</span>
+                </td>
+                <td className="py-2 px-4">
+                  <span className="text-sm text-gray-600">{item.lastViewed}</span>
+                </td>
+                <td className="py-2 px-4">
+                  <div className="flex items-center gap-2">
+                    <img 
+                      src={toAbsoluteUrl(item.viewedBy.avatar)} 
+                      alt={item.viewedBy.name}
+                      className="w-6 h-6 rounded-full border border-gray-200"
+                    />
+                    <span className="text-sm text-gray-600">{item.viewedBy.name}</span>
+                  </div>
+                </td>
+                <td className="py-2 px-4">
+                  <Menu>
+                    <MenuItem
+                      toggle="dropdown"
+                      trigger="click"
+                      dropdownProps={{
+                        placement: isRTL() ? 'bottom-start' : 'bottom-end',
+                        modifiers: [
+                          {
+                            name: 'offset',
+                            options: {
+                              offset: isRTL() ? [0, -10] : [0, 10]
+                            }
+                          }
+                        ]
+                      }}
+                    >
+                      <MenuToggle className="btn btn-sm btn-icon btn-light btn-clear">
+                        <KeenIcon icon="dots-vertical" />
+                      </MenuToggle>
+                      {DropdownCardItem1()}
+                    </MenuItem>
+                  </Menu>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       <div className="card-footer justify-center">
