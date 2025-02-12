@@ -84,6 +84,8 @@ import {
 } from '@/pages/authentication';
 import { DealsPage } from '@/pages/DealsPage';
 import { DealOverviewPage } from '@/pages/DealOverviewPage';
+import { DealMessagesContent } from '@/pages/DealMessagesContent';
+import { DealOverviewContent } from '@/pages/DealOverviewContent';
 const AppRoutingSetup = (): ReactElement => {
   return (
     <Routes>
@@ -91,7 +93,10 @@ const AppRoutingSetup = (): ReactElement => {
         <Route element={<Demo1Layout />}>
           <Route path="/" element={<DefaultPage />} />
           <Route path="/deals" element={<DealsPage />} />
-          <Route path="/deals/:dealId" element={<DealOverviewPage />} />
+          <Route path="/deals/:dealId" element={<DealOverviewPage />}>
+            <Route path="overview" element={<DealOverviewContent />} />
+            <Route path="messages" element={<DealMessagesContent />} />
+          </Route>
           <Route path="/dark-sidebar" element={<Demo1DarkSidebarPage />} />
           <Route path="/public-profile/profiles/default" element={<ProfileDefaultPage />} />
           <Route path="/public-profile/profiles/creator" element={<ProfileCreatorPage />} />

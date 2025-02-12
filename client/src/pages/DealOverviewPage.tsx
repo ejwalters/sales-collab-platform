@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { KeenIcon } from '@/components';
 import { Container } from '@/components/container';
@@ -7,14 +7,27 @@ import { Navbar, NavbarActions, NavbarDropdown } from '@/partials/navbar';
 import { PageMenu } from '@/pages/public-profile';
 import { DealOverviewContent } from '@/pages/DealOverviewContent';
 import { DealPageMenu } from '@/pages/DealPageMenu';
+import { DealMessagesContent } from '@/pages/DealMessagesContent';
 const DealOverviewPage = () => {
   const { dealId } = useParams();
+  const [currentView, setCurrentView] = useState('overview');
+
 
   const image = (
     <div className="flex items-center justify-center rounded-full border-2 border-success-clarity size-[100px] shrink-0 bg-light">
       <KeenIcon icon="briefcase" className="size-[50px]" />
     </div>
   );
+
+  const renderContent = () => {
+    switch (currentView) {
+      case 'messages':
+        return <DealMessagesContent />;
+      case 'overview':
+      default:
+        return <DealOverviewContent />;
+    }
+  };
 
   return (
     <Fragment>
@@ -30,8 +43,8 @@ const DealOverviewPage = () => {
 
       <Container>
         <Navbar>
-          <DealPageMenu />
-          <NavbarActions>
+        <DealPageMenu onViewChange={setCurrentView} currentView={currentView} />
+        <NavbarActions>
             <button type="button" className="btn btn-sm btn-primary">
               <KeenIcon icon="edit" /> Edit Deal
             </button>
@@ -41,7 +54,7 @@ const DealOverviewPage = () => {
       </Container>
 
       <Container>
-        <DealOverviewContent />
+        {renderContent()}
       </Container>
     </Fragment>
   );

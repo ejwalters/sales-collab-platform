@@ -1,54 +1,66 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-const DealPageMenu = () => {
+interface DealPageMenuProps {
+  onViewChange: (view: string) => void;
+  currentView: string;
+}
+
+export const DealPageMenu = ({ onViewChange, currentView }: DealPageMenuProps) => {
+  const navigate = useNavigate();
   const location = useLocation();
-  const currentPath = location.pathname;
+  const { dealId } = useParams();  // Add this
+
 
   const menuItems = [
     {
       title: 'Overview',
-      path: '/deals/overview'
+      view: 'overview',
+      path: 'overview'
     },
     {
       title: 'Messages',
-      path: '/deals/messages'
+      view: 'messages',
+      path: 'messages'
     },
     {
       title: 'Activities',
-      path: '/deals/activities'
+      view: 'activities'
     },
     {
       title: 'Documents',
-      path: '/deals/documents'
+      view: 'documents'
     },
     {
       title: 'Stakeholders',
-      path: '/deals/stakeholders'
+      view: 'stakeholders'
     }
   ];
+
+  const handleClick = (view: string, path: string) => {
+    onViewChange(view);
+    navigate(`/deals/${dealId}/${path}`, { replace: true });
+  };
 
   return (
     <div className="flex items-center gap-8">
       {menuItems.map((item) => (
-        <Link
+        <button
           key={item.title}
-          to={item.path}
+          onClick={() => handleClick(item.view, item.path)}
           className="relative py-4 px-1"
         >
           <span className={`text-sm font-medium ${
-            currentPath === item.path 
+            currentView === item.view 
               ? 'text-primary' 
               : 'text-gray-600 hover:text-primary'
           }`}>
             {item.title}
           </span>
-          {currentPath === item.path && (
+          {currentView === item.view && (
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full" />
           )}
-        </Link>
+        </button>
       ))}
     </div>
   );
 };
-
-export { DealPageMenu };
