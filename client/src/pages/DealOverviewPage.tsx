@@ -6,7 +6,7 @@ import { UserProfileHero } from '@/partials/heros';
 import { Navbar, NavbarActions, NavbarDropdown } from '@/partials/navbar';
 import { PageMenu } from '@/pages/public-profile';
 import { DealOverviewContent } from '@/pages/DealOverviewContent';
-
+import { DealPageMenu } from '@/pages/DealPageMenu';
 const DealOverviewPage = () => {
   const { dealId } = useParams();
 
@@ -30,7 +30,7 @@ const DealOverviewPage = () => {
 
       <Container>
         <Navbar>
-          <PageMenu />
+          <DealPageMenu />
           <NavbarActions>
             <button type="button" className="btn btn-sm btn-primary">
               <KeenIcon icon="edit" /> Edit Deal

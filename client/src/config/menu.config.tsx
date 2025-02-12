@@ -79,17 +79,8 @@ export const MENU_SIDEBAR: TMenuConfig = [
         ]
       },
       {
-        title: 'Projects',
-        children: [
-          {
-            title: '3 Columns',
-            path: '/public-profile/projects/3-columns'
-          },
-          {
-            title: '2 Columns',
-            path: '/public-profile/projects/2-columns'
-          }
-        ]
+        title: 'Overview',
+        path: '/deals/overview'
       },
       {
         title: 'Works',
