@@ -10,7 +10,7 @@ import { DealPageMenu } from '@/pages/DealPageMenu';
 import { DealMessagesContent } from '@/pages/DealMessagesContent';
 import { DealActivitiesContent } from '@/pages/DealActivitiesContent';
 import { DealDocumentsContent } from '@/pages/DealDocumentsContent';
-
+import { DealStakeholdersContent } from '@/pages/DealStakeholdersContent';
 const DealOverviewPage = () => {
   const { dealId } = useParams();
   const [currentView, setCurrentView] = useState('overview');
@@ -30,6 +30,8 @@ const DealOverviewPage = () => {
         return <DealActivitiesContent />;
       case 'documents':
         return <DealDocumentsContent />;
+      case 'stakeholders':
+        return <DealStakeholdersContent />;
       case 'overview':
       default:
         return <DealOverviewContent />;

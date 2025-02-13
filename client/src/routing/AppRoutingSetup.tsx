@@ -88,6 +88,8 @@ import { DealMessagesContent } from '@/pages/DealMessagesContent';
 import { DealOverviewContent } from '@/pages/DealOverviewContent';
 import { DealActivitiesContent } from '@/pages/DealActivitiesContent';
 import { DealDocumentsContent } from '@/pages/DealDocumentsContent';
+import { DealStakeholdersContent } from '@/pages/DealStakeholdersContent';
+
 const AppRoutingSetup = (): ReactElement => {
   return (
     <Routes>
@@ -101,6 +103,7 @@ const AppRoutingSetup = (): ReactElement => {
             <Route path="messages" element={<DealMessagesContent />} />
             <Route path="activities" element={<DealActivitiesContent />} />
             <Route path="documents" element={<DealDocumentsContent />} />
+            <Route path="stakeholders" element={<DealStakeholdersContent />} />
           </Route>
           <Route path="/dark-sidebar" element={<Demo1DarkSidebarPage />} />
           <Route path="/public-profile/profiles/default" element={<ProfileDefaultPage />} />

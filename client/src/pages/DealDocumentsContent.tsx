@@ -23,7 +23,7 @@ const DealDocumentsContent = () => {
       size: '2.4 MB',
       uploadedBy: {
         name: 'Emma Smith',
-        avatar: '300-1.jpg'
+        avatar: '300-1.png'
       },
       uploadedAt: '2 hours ago'
     },
@@ -44,7 +44,7 @@ const DealDocumentsContent = () => {
       size: '892 KB',
       uploadedBy: {
         name: 'Alex Hunt',
-        avatar: '300-2.jpg'
+        avatar: '300-2.png'
       },
       uploadedAt: 'Yesterday'
     }
@@ -152,8 +152,8 @@ const DealDocumentsContent = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <button className="btn btn-icon btn-sm btn-light">
-                        <KeenIcon icon="download" className="size-4" />
+                      <button className="btn-icon btn-sm text-gray-500 hover:text-gray-700">
+                        <KeenIcon icon="arrow-down" className="size-4" />
                       </button>
                       <button 
                         className="btn btn-icon btn-sm btn-light-danger"
