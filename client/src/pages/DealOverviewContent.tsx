@@ -6,7 +6,8 @@ import { RecentConversations } from '@/pages/RecentConversations';
 import { ToDoList } from '@/pages/ToDoList';
 
 const DealOverviewContent = () => {
-  const items = [
+  console.log('DealOverviewContent');
+    const items = [
     { number: '$50,000', label: 'Deal Value' },
     { number: '45', label: 'Days in Pipeline' },
     { number: '80%', label: 'Win Probability' },

@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { KeenIcon } from '@/components';
 
 import { toAbsoluteUrl } from '@/utils';
 
@@ -12,7 +13,11 @@ import {
   ActivitiesUpcomingContent
 } from '@/partials/activities/items';
 
-const Activities = () => {
+interface ActivitiesProps {
+  itemCount?: number;
+}
+
+const Activities = ({ itemCount = 3 }: ActivitiesProps) => {
   const activities = [
     <ActivitiesNewArticle key="new-article" />,
     <ActivitiesInterview key="interview" />,
@@ -42,20 +47,25 @@ const Activities = () => {
       <div className="card-header">
         <h3 className="card-title">Activities</h3>
 
-        <div className="flex items-center gap-2">
-          <label className="switch">
-            <span className="switch-label">
-              Auto refresh:&nbsp;
-              <span className="switch-on:hidden">Off</span>
-              <span className="hidden switch-on:inline">On</span>
-            </span>
-            <input type="checkbox" value="1" name="check" defaultChecked readOnly />
-          </label>
+        <div className="flex items-center gap-4">
+          <button className="btn btn-primary btn-sm flex items-center justify-center">
+            Log Activity
+          </button>
+          <div className="flex items-center gap-2">
+            <label className="switch">
+              <span className="switch-label">
+                Auto refresh:&nbsp;
+                <span className="switch-on:hidden">Off</span>
+                <span className="hidden switch-on:inline">On</span>
+              </span>
+              <input type="checkbox" value="1" name="check" defaultChecked readOnly />
+            </label>
+          </div>
         </div>
       </div>
 
       <div className="card-body">
-        {activities.slice(0, 3)}
+        {activities.slice(0, itemCount)}
       </div>
 
       <div className="card-footer justify-center mt-auto">

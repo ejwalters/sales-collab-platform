@@ -8,6 +8,9 @@ import { PageMenu } from '@/pages/public-profile';
 import { DealOverviewContent } from '@/pages/DealOverviewContent';
 import { DealPageMenu } from '@/pages/DealPageMenu';
 import { DealMessagesContent } from '@/pages/DealMessagesContent';
+import { DealActivitiesContent } from '@/pages/DealActivitiesContent';
+import { DealDocumentsContent } from '@/pages/DealDocumentsContent';
+
 const DealOverviewPage = () => {
   const { dealId } = useParams();
   const [currentView, setCurrentView] = useState('overview');
@@ -23,6 +26,10 @@ const DealOverviewPage = () => {
     switch (currentView) {
       case 'messages':
         return <DealMessagesContent />;
+      case 'activities':
+        return <DealActivitiesContent />;
+      case 'documents':
+        return <DealDocumentsContent />;
       case 'overview':
       default:
         return <DealOverviewContent />;
