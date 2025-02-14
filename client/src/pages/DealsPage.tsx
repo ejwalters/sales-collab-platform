@@ -39,7 +39,7 @@ const DealsPage = () => {
       <div className="card">
         <div className="card-header flex justify-between items-center">
           <h3 className="card-title">All Deals</h3>
-          <button className="btn btn-primary">+ New Deal</button>
+          <button className="btn btn-primary">New Deal</button>
         </div>
         <div className="card-body">
           <div className="overflow-x-auto">
