@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { KeenIcon } from '@/components';
+import { Container, KeenIcon } from '@/components';
 import { toAbsoluteUrl } from '@/utils';
+import { Statistics } from '@/pages/public-profile/profiles/company/blocks/Statistics';
+
 
 interface Document {
   id: string;
@@ -15,6 +17,13 @@ interface Document {
 }
 
 const DealDocumentsContent = () => {
+  const items = [
+    { number: 'Proposal PDF', label: 'Most Viewed Document' },
+    { number: 'POT Read Out', label: 'Last Viewed Document' },
+    { number: '4/10', label: 'Milestones Completed' },
+    { number: '12', label: 'Days Since Last Activity' }
+  ];
+  
   const [documents, setDocuments] = useState<Document[]>([
     {
       id: '1',
@@ -84,6 +93,10 @@ const DealDocumentsContent = () => {
   };
 
   return (
+    <Container>
+      <div className="col-span-1 lg:col-span-2 mb-5">
+          <Statistics items={items} />
+      </div>
     <div className="card">
       <div className="card-header border-b border-gray-200">
         <h3 className="card-title">Documents</h3>
@@ -170,6 +183,7 @@ const DealDocumentsContent = () => {
         </div>
       </div>
     </div>
+    </Container>
   );
 };
 

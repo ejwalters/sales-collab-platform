@@ -12,6 +12,8 @@ import { DealActivitiesContent } from '@/pages/DealActivitiesContent';
 import { DealDocumentsContent } from '@/pages/DealDocumentsContent';
 import { DealStakeholdersContent } from '@/pages/DealStakeholdersContent';
 import { ToDoListContent } from '@/pages/ToDoListContent';
+import { DealMilestonesContent } from '@/pages/DealMilestonesContent';
+
 const DealOverviewPage = () => {
   const { dealId } = useParams();
   const [currentView, setCurrentView] = useState('overview');
@@ -35,6 +37,8 @@ const DealOverviewPage = () => {
         return <DealStakeholdersContent />;
       case 'to-do-list':
         return <ToDoListContent />;
+      case 'milestones':
+        return <DealMilestonesContent />;
       case 'overview':
       default:
         return <DealOverviewContent />;

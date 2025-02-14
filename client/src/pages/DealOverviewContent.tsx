@@ -8,10 +8,10 @@ import { ToDoList } from '@/pages/ToDoList';
 const DealOverviewContent = () => {
   console.log('DealOverviewContent');
     const items = [
-    { number: '$50,000', label: 'Deal Value' },
-    { number: '45', label: 'Days in Pipeline' },
-    { number: '80%', label: 'Win Probability' },
-    { number: '12', label: 'Activities' }
+    { number: '50', label: 'Document Views Last 30 Days' },
+    { number: '45', label: 'Messages Received Last 30 Days' },
+    { number: '4/10', label: 'Milestones Completed' },
+    { number: '12', label: 'Days Since Last Activity' }
   ];
 
   return (
