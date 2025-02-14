@@ -34,6 +34,11 @@ export const DealPageMenu = ({ onViewChange, currentView }: DealPageMenuProps) =
       title: 'Stakeholders',
       view: 'stakeholders',
       path: 'stakeholders'
+    }, 
+    {
+      title: 'To-Do List',
+      view: 'to-do-list',
+      path: 'to-do-list'
     }
   ];
 

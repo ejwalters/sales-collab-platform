@@ -17,6 +17,12 @@ export default defineConfig({
     }
   },
   build: {
-    chunkSizeWarningLimit: 3000
+    chunkSizeWarningLimit: 3000,
+    commonjsOptions: {
+      include: [/node_modules/],
+    }
+  },
+  optimizeDeps: {
+    include: ['dagre', '@reactflow/core'],
   }
 });
