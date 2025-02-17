@@ -99,7 +99,6 @@ const AppRoutingSetup = (): ReactElement => {
           <Route path="/" element={<DefaultPage />} />
           <Route path="/deals" element={<DealsPage />} />
           <Route path="/deals/:dealId" element={<DealOverviewPage />}>
-            <Route index element={<Navigate to="overview" replace />} />
             <Route path="overview" element={<DealOverviewContent />} />
             <Route path="messages" element={<DealMessagesContent />} />
             <Route path="activities" element={<DealActivitiesContent />} />

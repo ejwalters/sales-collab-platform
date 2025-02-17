@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Fragment, useState, useEffect } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import { KeenIcon } from '@/components';
 import { Container } from '@/components/container';
 import { UserProfileHero } from '@/partials/heros';
@@ -16,8 +16,13 @@ import { DealMilestonesContent } from '@/pages/DealMilestonesContent';
 
 const DealOverviewPage = () => {
   const { dealId } = useParams();
-  const [currentView, setCurrentView] = useState('overview');
+  const location = useLocation();
+  const currentPath = location.pathname.split('/').pop() || 'overview';
+  const [currentView, setCurrentView] = useState(currentPath);
 
+  useEffect(() => {
+    setCurrentView(currentPath);
+  }, [location.pathname]);
 
   const image = (
     <div className="flex items-center justify-center rounded-full border-2 border-success-clarity size-[100px] shrink-0 bg-light">
@@ -59,8 +64,8 @@ const DealOverviewPage = () => {
 
       <Container>
         <Navbar>
-        <DealPageMenu onViewChange={setCurrentView} currentView={currentView} />
-        <NavbarActions>
+          <DealPageMenu currentView={currentView} onViewChange={setCurrentView} />
+          <NavbarActions>
             <button type="button" className="btn btn-sm btn-primary">
               <KeenIcon icon="edit" /> Edit Deal
             </button>

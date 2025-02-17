@@ -31,7 +31,7 @@ const DealsPage = () => {
   ]);
 
   const handleDealClick = (dealId: string) => {
-    navigate(`/deals/${dealId}`);
+    navigate(`/deals/${dealId}/overview`);
   };
 
   return (
