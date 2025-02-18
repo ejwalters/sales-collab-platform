@@ -91,6 +91,7 @@ import { DealDocumentsContent } from '@/pages/DealDocumentsContent';
 import { DealStakeholdersContent } from '@/pages/DealStakeholdersContent';
 import { ToDoListContent } from '@/pages/ToDoListContent';
 import { DealMilestonesContent } from '@/pages/DealMilestonesContent';
+import { NewDealPage } from '@/pages/NewDealPage';
 const AppRoutingSetup = (): ReactElement => {
   return (
     <Routes>
@@ -98,7 +99,8 @@ const AppRoutingSetup = (): ReactElement => {
         <Route element={<Demo1Layout />}>
           <Route path="/" element={<DefaultPage />} />
           <Route path="/deals" element={<DealsPage />} />
-          <Route path="/deals/:dealId" element={<DealOverviewPage />}>
+          <Route path="/deals/new" element={<NewDealPage />} />
+          <Route path="/deals/:dealId/*" element={<DealOverviewPage />}>
             <Route path="overview" element={<DealOverviewContent />} />
             <Route path="messages" element={<DealMessagesContent />} />
             <Route path="activities" element={<DealActivitiesContent />} />

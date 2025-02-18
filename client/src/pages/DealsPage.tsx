@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
+import { KeenIcon, Toast } from '@/components';
 
 interface Deal {
   name: string;
@@ -11,7 +12,7 @@ interface Deal {
 
 const DealsPage = () => {
   const navigate = useNavigate();
-  // Sample data - replace with your actual data source
+  const location = useLocation();
   const [deals] = useState<Deal[]>([
     {
       name: "Acme Corp",
@@ -30,6 +31,16 @@ const DealsPage = () => {
     // Add more sample deals as needed
   ]);
 
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+
+  useEffect(() => {
+    if (location.state?.showToast) {
+      setToastMessage(location.state.toastMessage);
+      setShowToast(true);
+    }
+  }, [location]);
+
   const handleDealClick = (dealId: string) => {
     navigate(`/deals/${dealId}/overview`);
   };
@@ -39,7 +50,12 @@ const DealsPage = () => {
       <div className="card">
         <div className="card-header flex justify-between items-center">
           <h3 className="card-title">All Deals</h3>
-          <button className="btn btn-primary">New Deal</button>
+          <button 
+            className="btn btn-primary"
+            onClick={() => navigate('/deals/new')}
+          >
+            New Deal
+          </button>
         </div>
         <div className="card-body">
           <div className="overflow-x-auto">
@@ -96,6 +112,14 @@ const DealsPage = () => {
           </div>
         </div>
       </div>
+
+      {showToast && (
+        <Toast
+          type="success"
+          message={toastMessage}
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </div>
   );
 };
